@@ -1,12 +1,8 @@
-with payment as (
-
-    select
+ select
        orderid as order_id,
        paymentmethod,
        status,
        amount,
        created as create_date
-    from raw.stripe.payment
+    from {{ source('stripe', 'payment') }}
       where status = 'success'
-)
-select * from payment
