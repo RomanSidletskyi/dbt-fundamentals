@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_payments
+    description: Stage customer pyamets per orders from our strip app.
+    columns:
+      - name: order_id
+        description: Order id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: order_id
